@@ -13,8 +13,8 @@ greet('Ada'); // 'Hello, Ada!'
 
 Returns `a / b` when both arguments are finite JavaScript numbers and `b` is non-zero. It throws a `TypeError` for non-number or non-finite arguments and a `RangeError` with the message `Cannot divide by zero` when `b` is `0` or `-0`.
 
-## `greet(name)`
+## `greet(name, punctuation = '!')`
 
-Returns `Hello, <name>!` when `name` is a non-blank string. It throws a `TypeError` with the message `greet expects a non-blank string` for missing, non-string, or blank input.
+Returns `Hello, <name><punctuation>` when `name` is a non-blank string and `punctuation` is a non-empty string (defaulting to `!`). It throws a `TypeError` with the message `greet expects a non-blank string` for missing, non-string, or blank input, and a `TypeError` with the message `greet expects punctuation to be a non-empty string` for missing or empty punctuation.
 
 Run the tests with `npm test`.

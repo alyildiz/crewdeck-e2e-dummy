@@ -35,11 +35,24 @@ test('greets a normal name', () => {
   assert.equal(greet('Ada'), 'Hello, Ada!');
 });
 
+test('uses custom punctuation', () => {
+  assert.equal(greet('Ada', '?'), 'Hello, Ada?');
+});
+
 test('rejects missing or blank names', () => {
   for (const name of [undefined, null, '', '   ', 42]) {
     assert.throws(
       () => greet(name),
       { name: 'TypeError', message: 'greet expects a non-blank string' },
+    );
+  }
+});
+
+test('rejects missing or empty punctuation', () => {
+  for (const punctuation of ['', 42, null, ['!']]) {
+    assert.throws(
+      () => greet('Ada', punctuation),
+      { name: 'TypeError', message: 'greet expects punctuation to be a non-empty string' },
     );
   }
 });
