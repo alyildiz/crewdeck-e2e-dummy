@@ -35,8 +35,16 @@ test('greets a normal name', () => {
   assert.equal(greet('Ada'), 'Hello, Ada!');
 });
 
+test('uses custom punctuation', () => {
+  assert.equal(greet('Ada', '?'), 'Hello, Ada?');
+});
+
 test('uses a custom salutation', () => {
-  assert.equal(greet('Ada', 'Welcome'), 'Welcome, Ada!');
+  assert.equal(greet('Ada', '!', 'Welcome'), 'Welcome, Ada!');
+});
+
+test('combines custom punctuation and salutation', () => {
+  assert.equal(greet('Ada', '?', 'Welcome'), 'Welcome, Ada?');
 });
 
 test('rejects missing or blank names', () => {
@@ -48,10 +56,19 @@ test('rejects missing or blank names', () => {
   }
 });
 
+test('rejects missing or empty punctuation', () => {
+  for (const punctuation of ['', 42, null, ['!']]) {
+    assert.throws(
+      () => greet('Ada', punctuation),
+      { name: 'TypeError', message: 'greet expects punctuation to be a non-empty string' },
+    );
+  }
+});
+
 test('rejects missing or blank salutations', () => {
   for (const salutation of [null, '', '   ', 42]) {
     assert.throws(
-      () => greet('Ada', salutation),
+      () => greet('Ada', '!', salutation),
       { name: 'TypeError', message: 'greet expects a non-blank salutation string' },
     );
   }
