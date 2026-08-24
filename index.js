@@ -18,3 +18,18 @@ export function divide(a, b) {
 
   return a / b;
 }
+
+/**
+ * Build a greeting for a name.
+ *
+ * @param {string} name The name to greet.
+ * @returns {string} The greeting `Hello, <name>!`.
+ * @throws {TypeError} If the argument is not a non-blank string.
+ */
+export function greet(name) {
+  if (typeof name !== 'string' || name.trim() === '') {
+    throw new TypeError('greet expects a non-blank string');
+  }
+
+  return `Hello, ${name}!`;
+}
