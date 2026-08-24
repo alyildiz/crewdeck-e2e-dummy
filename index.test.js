@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { divide } from './index.js';
+import { divide, greet } from './index.js';
 
 test('divides positive numbers', () => {
   assert.equal(divide(12, 3), 4);
@@ -27,6 +27,19 @@ test('rejects non-finite or non-number operands', () => {
     assert.throws(
       () => divide(...operands),
       { name: 'TypeError', message: 'divide expects two finite numbers' },
+    );
+  }
+});
+
+test('greets a normal name', () => {
+  assert.equal(greet('Ada'), 'Hello, Ada!');
+});
+
+test('rejects missing or blank names', () => {
+  for (const name of [undefined, null, '', '   ', 42]) {
+    assert.throws(
+      () => greet(name),
+      { name: 'TypeError', message: 'greet expects a non-blank string' },
     );
   }
 });
