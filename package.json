@@ -1,0 +1,13 @@
+{
+  "name": "divide",
+  "version": "1.0.0",
+  "description": "A small, predictable division utility.",
+  "type": "module",
+  "exports": "./index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
