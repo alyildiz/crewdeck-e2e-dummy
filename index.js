@@ -23,13 +23,19 @@ export function divide(a, b) {
  * Build a greeting for a name.
  *
  * @param {string} name The name to greet.
- * @returns {string} The greeting `Hello, <name>!`.
+ * @param {string} [punctuation='!'] The punctuation to end the greeting with.
+ * @returns {string} The greeting `Hello, <name><punctuation>`.
  * @throws {TypeError} If the argument is not a non-blank string.
+ * @throws {TypeError} If the punctuation is not a non-empty string.
  */
-export function greet(name) {
+export function greet(name, punctuation = '!') {
   if (typeof name !== 'string' || name.trim() === '') {
     throw new TypeError('greet expects a non-blank string');
   }
 
-  return `Hello, ${name}!`;
+  if (typeof punctuation !== 'string' || punctuation === '') {
+    throw new TypeError('greet expects punctuation to be a non-empty string');
+  }
+
+  return `Hello, ${name}${punctuation}`;
 }
